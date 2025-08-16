@@ -49,3 +49,24 @@ def din_amount(coins, target):
         return min_table[target] if min_table[target] != int(float('inf')) else -1
 
 
+def stupid_din_amount(coins, target):
+    min_table = [float('inf')] * (target+1)
+    min_table[0] = 0
+
+    for coin in coins:
+        min_table[coin] = 1
+
+    def traverse(table, i, target):
+        if i > target:
+            return float('inf')
+        return min(min_table[target] + min_table[i], traverse(table, i + 1, target-1))
+
+    for i in range(1, target+1):
+         min_table[i] = traverse(min_table, 0, i)
+
+if __name__ == '__main__':
+    print(stupid_din_amount(coins, target))
+
+
+
+
