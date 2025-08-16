@@ -46,7 +46,7 @@ def din_amount(coins, target):
             if i - coin >= 0:
                 min_table[i] = min(min_table[i], min_table[i - coin] + 1)
 
-        return min_table[target] if min_table[target] != int(float('inf')) else -1
+    return min_table[target] if min_table[target] != int(float('inf')) else -1
 
 
 def stupid_din_amount(coins, target):
