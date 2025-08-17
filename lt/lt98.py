@@ -73,11 +73,9 @@ def dfs_traversal_without_memory(node, list_):
 
     prev = list_[0]
     if prev >= node.val:
-        list_[1] = False and list_[1]
         return False
     else:
         list_[0] = node.val
-        list_[1] = True and list_[1]
 
     if node.right:
         if not dfs_traversal_without_memory(node.right, list_):
