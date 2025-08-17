@@ -56,7 +56,7 @@ def minDistance(word1: str, word2: str) -> int:
 
                 match_matrix_[i][j] = min(match_matrix_[i - 1][j - 1] + cost, match_matrix_[i - 1][j] + 1,
                                           match_matrix_[i][j - 1] + 1)
-        print(match_matrix_)
+        # print(match_matrix_)
         return match_matrix_
 
     return edit(word1, word2)[-1][-1]
