@@ -63,6 +63,28 @@ def dfs_traversal(node, list_):
     print(list_)
     return list_
 
+def dfs_traversal_without_memory(node, list_):
+    if node is None:
+        return True
+
+    if node.left:
+        if not dfs_traversal_without_memory(node.left, list_):
+            return False
+
+    prev = list_[0]
+    if prev >= node.val:
+        list_[1] = False and list_[1]
+        return False
+    else:
+        list_[0] = node.val
+        list_[1] = True and list_[1]
+
+    if node.right:
+        if not dfs_traversal_without_memory(node.right, list_):
+            return False
+
+    return list_[1]
+
 def issorted(list_):
 
     for i in range(len(list_) - 1):
@@ -79,13 +101,15 @@ if __name__ == "__main__":
     root.left = TreeNode(5)
     root.right = TreeNode(15)
 
-    root.left.left = TreeNode(3)
+    root.left.left = TreeNode(6)
     root.left.right = TreeNode(7)
 
     root.right.left = TreeNode(12)
     root.right.right = TreeNode(20)
 
-    list_ = dfs_traversal(root, [])
-    print(issorted(list_))
+    # list_ = dfs_traversal(root, [])
+    # print(issorted(list_))
+
+    print(dfs_traversal_without_memory(root, [-float('inf'), True]))
 
 
