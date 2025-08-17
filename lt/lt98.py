@@ -47,38 +47,32 @@ def isvalid(node):
 #    / \   / \
 #   3   7 12 20
 
-def issorted_valid(node):
+#recursion
+def dfs_traversal(node, list_):
+    if node is None:
+        return
 
-    tree_list_ = deque([node.val])
+    if node.left:
+        dfs_traversal(node.left, list_)
 
-    def traversal(node):
-        tree_ = deque([node])
+    list_.append(node.val)
 
-        while tree_:
-            curr_node = tree_.pop()
+    if node.right:
+        dfs_traversal(node.right, list_)
 
-            if curr_node.left is not None:
-                if curr_node.left.val >= curr_node.val:
-                    return False
-                else:
-                    tree_.append(curr_node.left)
-                    tree_list_.append(curr_node.left.val)
+    print(list_)
+    return list_
 
-            if curr_node.right is not None:
-                if curr_node.right.val <= curr_node.val:
-                    return False
-                else:
-                    tree_.append(curr_node.right)
-                    tree_list_.append(curr_node.right.val)
+def issorted(list_):
 
-        return tree_list_
-
-    tree_list_ = traversal(node)
-    for i in range(1,len(tree_list_)):
-        if tree_list_[i-1] >= tree_list_[i]:
+    for i in range(len(list_) - 1):
+        if list_[i] > list_[i + 1]:
             return False
 
     return True
+
+
+
 
 if __name__ == "__main__":
     root = TreeNode(10)
@@ -91,4 +85,7 @@ if __name__ == "__main__":
     root.right.left = TreeNode(12)
     root.right.right = TreeNode(20)
 
-    print(issorted_valid(root))
+    list_ = dfs_traversal(root, [])
+    print(issorted(list_))
+
+
