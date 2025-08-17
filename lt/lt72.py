@@ -8,8 +8,8 @@ Delete a character
 Replace a character
 """
 
-word2 = "horse"
-word1 = "ros"
+word2 = "zoologicoarchaeologist"
+word1 = "zoogeologist"
 
 # letter by letter changes
 # # horse
@@ -27,33 +27,40 @@ word1 = "ros"
 # s 32223
 
 
-def edit(word1, word2):
-    match_matrix_ = [[float('inf')] * (len(word2)+1) for _ in range(len(word1)+1)]
-    match_matrix_[0][0] = 0
-
-    print(match_matrix_)
-
+def minDistance(word1: str, word2: str) -> int:
     if len(word1) == 0:
         return len(word2)
     elif len(word2) == 0:
         return len(word1)
+    elif len(word1) == len(word2) and len(word2) == 0:
+        return 0
 
-    for i in range(1, len(word1)+1):
-        for j in range(1, len(word2)+1):
-            letter_i = word1[i-1]
-            letter_j = word2[j-1]
+    def edit(word1, word2):
+        match_matrix_ = [[float('inf')] * (len(word2) + 1) for _ in range(len(word1) + 1)]
+        match_matrix_[0][0] = 0
 
-            if letter_j != letter_i:
-                cost = 1
-            else:
-                cost = 0
+        for i in range(len(word1) + 1):
+            match_matrix_[i][0] = i
+        for j in range(len(word2) + 1):
+            match_matrix_[0][j] = j
 
-            match_matrix_[i][j] = min(match_matrix_[i-1][j-1]+cost, match_matrix_[i-1][j]+cost, match_matrix_[i][j-1]+cost)
+        for i in range(1, len(word1) + 1):
+            for j in range(1, len(word2) + 1):
+                letter_i = word1[i - 1]
+                letter_j = word2[j - 1]
 
-    print(match_matrix_)
+                if letter_j != letter_i:
+                    cost = 1
+                else:
+                    cost = 0
 
-    return match_matrix_
+                match_matrix_[i][j] = min(match_matrix_[i - 1][j - 1] + cost, match_matrix_[i - 1][j] + 1,
+                                          match_matrix_[i][j - 1] + 1)
+        print(match_matrix_)
+        return match_matrix_
+
+    return edit(word1, word2)[-1][-1]
 
 if __name__ == "__main__":
 
-    print(edit(word1, word2)[-1][-1])
+    print(minDistance(word1, word2))
