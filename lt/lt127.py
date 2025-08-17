@@ -1,3 +1,4 @@
+from collections import deque
 from typing import Dict
 
 # using levenstein from leetcode 72
@@ -32,12 +33,12 @@ def traverse_graph(graph_: Dict[int, set]):
 
     found = False
 
-    list_ = [start_idx]
+    list_ = deque([start_idx])
 
     steps_ = 0
 
-    while visited != all_nodes:
-        curr_node = list_.pop()
+    while list_:
+        curr_node = list_.popleft()
 
         neighbors = graph_[curr_node]
 
@@ -46,12 +47,13 @@ def traverse_graph(graph_: Dict[int, set]):
         for n_ in neighbors:
             if n_ not in visited:
                 if n_ == end_idx:
-                    return steps_
+                    print(steps_)
+                    return steps_ + 1
                 list_.append(n_)
 
         steps_ += 1
-    print(steps_)
-    return steps_ + 1
+
+    return -1
 
 
 # 0 1 2 3 4 5
