@@ -35,21 +35,21 @@ def traverse_graph(graph_: Dict[int, set]):
 
     list_ = deque([start_idx])
 
-    steps_ = 0
+    steps_ = 1
 
     while list_:
-        curr_node = list_.popleft()
 
-        neighbors = graph_[curr_node]
+        for _ in range(len(list_)):  # one level
+            curr_node = list_.popleft()
+            neighbors = graph_[curr_node]
 
-        visited.add(curr_node)
-
-        for n_ in neighbors:
-            if n_ not in visited:
-                if n_ == end_idx:
-                    print(steps_)
-                    return steps_ + 1
-                list_.append(n_)
+            for n_ in neighbors:
+                if n_ not in visited:
+                    if n_ == end_idx:
+                        print(steps_)
+                        return steps_
+                    visited.add(n_)
+                    list_.append(n_)
 
         steps_ += 1
 
