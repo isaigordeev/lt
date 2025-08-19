@@ -1,8 +1,7 @@
-height = [4, 2, 0, 3, 2, 5]
-
 # ##  #
 # ######## #
 ############
+height = [0,1,0,2,1,0,1,3,2,1,2,1]
 
 
 def find_border(heights, start_idx):
@@ -24,29 +23,35 @@ def fill_capable(heights, left_border_idx, right_border_idx):
 ## ##
 #####
 
+
+#  3 2 4 5
+
 def pick_global(heights, borders):
 
-    peak_heights = heights[borders]
+    peak_heights = {i:heights[i] for i in borders}
 
-    i, j = 0, 0
-    global_heights = heights[borders]
+    i, j = 0, 1
+    global_peaks = []
 
-
-    while i < len(peak_heights):
-        if peak_heights[i] < global_heights[i+1]:
-            i += 1
+    peak_heights_ =[i_ for i_ in borders]
+    while j < len(peak_heights_):
+        peak_i = peak_heights[peak_heights_[i]]
+        peak_j = peak_heights[peak_heights_[j]]
+        if peak_i > peak_j:
+            j += 1
         else:
+            global_peaks += [peak_heights_[i], peak_heights_[j]]
+            i = j
+            j += 1
 
 
-
-
-
+    return global_peaks
 
 def fill_water(heights):
 
     left_border_idx_ = 1
 
-    heights = [0, *heights]
+    heights = [0, *heights, 0]
     borders = []
     filled_ = 0
 
@@ -57,6 +62,8 @@ def fill_water(heights):
         else:
             left_border_idx_ = border + 1
             borders.append(border)
+
+    borders = pick_global(heights, borders)
 
     for i_ in range(len(borders)-1):
         filled_ += fill_capable(heights, borders[i_], borders[i_+1])
