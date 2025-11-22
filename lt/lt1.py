@@ -16,5 +16,32 @@
 # - -10^9 <= nums[i] <= 10^9
 # - -10^9 <= target <= 10^9
 
-def twoSum(nums, target):
-    pass
+
+nums = [2, 7, 12, 13, 15]
+nums = [13]
+target = 26
+
+
+def twoSum0(nums, target) -> tuple[int, int]:
+    for _x in nums:
+        for _y in nums:
+            if _x + _y == target:
+                return (_x, _y)
+
+    return (-1, -1)
+
+
+def twoSum1(nums, target) -> tuple[int, int]:
+    _dict = set()
+    for _x in nums:
+        if _x not in _dict:
+            _dict.add(target - _x)
+        else:
+            return (_x, target - _x)
+
+    return (-1, -1)
+
+
+pair = twoSum1(nums, target)
+
+print(pair)
