@@ -17,11 +17,6 @@
 # - -10^9 <= target <= 10^9
 
 
-nums = [2, 7, 12, 13, 15]
-nums = [13]
-target = 26
-
-
 def twoSum0(nums, target) -> tuple[int, int]:
     for _x in nums:
         for _y in nums:
@@ -32,16 +27,12 @@ def twoSum0(nums, target) -> tuple[int, int]:
 
 
 def twoSum1(nums, target) -> tuple[int, int]:
-    _dict = set()
+    _set = set()
     for _x in nums:
-        if _x not in _dict:
-            _dict.add(target - _x)
+        if _x not in _set:
+            _set.add(target - _x)
+            print(_set)
         else:
             return (_x, target - _x)
-
+    print("s", _set)
     return (-1, -1)
-
-
-pair = twoSum1(nums, target)
-
-print(pair)

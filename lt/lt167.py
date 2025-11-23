@@ -10,6 +10,7 @@ def find(numbers: list[int], target: int):
 
 print(find(numbers, target))
 
+
 def ef_find(numbers: list[int], target: int):
     
     dict_ = dict()
