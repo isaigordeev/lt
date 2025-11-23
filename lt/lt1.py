@@ -23,7 +23,7 @@ def twoSum0(nums, target) -> tuple[int, int]:
             if _x + _y == target:
                 return (_x, _y)
 
-    return (-1, -1)
+    return (None, None)
 
 
 def twoSum1(nums, target) -> tuple[int, int]:
@@ -31,8 +31,6 @@ def twoSum1(nums, target) -> tuple[int, int]:
     for _x in nums:
         if _x not in _set:
             _set.add(target - _x)
-            print(_set)
         else:
             return (_x, target - _x)
-    print("s", _set)
-    return (-1, -1)
+    return (None, None)

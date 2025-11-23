@@ -1,6 +1,9 @@
 # lt
 lt sessions
 
+### Запустить тест (лень сетапить)
+
+python -m tests.test_lt1
 
 ### Текущие
 

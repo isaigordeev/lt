@@ -21,19 +21,21 @@
 # - 3 <= nums.length <= 3000
 # - -10^5 <= nums[i] <= 10^5
 
-from lt1 import twoSum1
+from .lt1 import twoSum1
 
 
-def threeSum(nums):
+def threeSum(nums: list):
     _res = set()
     _treated_target = set()
     _treated_target.add(0)
 
-    for _target in nums:
+    for i, _target in enumerate(nums):
         if _target not in _treated_target:
-            _a, _b = twoSum1(nums, -1 * _target)  # inverted
+            _a, _b = twoSum1(
+                nums[:i] + nums[i + 1 :], -1 * _target
+            )  # inverted
 
-            if _a != -1:
+            if _a:
                 _res.add(
                     (
                         _a,
@@ -41,6 +43,7 @@ def threeSum(nums):
                         _target,
                     )
                 )
+
             _treated_target.add(_target)
             _treated_target.add(_target * -1)
         else:
