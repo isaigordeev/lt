@@ -21,5 +21,23 @@
 # - 0 <= s.length <= 5 * 10^4
 # - s состоит из английских букв, цифр, символов и пробелов
 
+
 def lengthOfLongestSubstring(s):
-    pass
+    _curr_set = []
+    _max_set_len = 0
+
+    for _ch in s:
+        if _ch not in _curr_set:
+            _curr_set.append(_ch)
+            _l = len(_curr_set)
+
+            if _l > _max_set_len:
+                _max_set_len = _l
+
+        else:
+            # do increase lenght but order
+            _idx = _curr_set.index(_ch)
+            _curr_set = _curr_set[_idx + 1 :]
+            _curr_set.append(_ch)
+
+    return _max_set_len
