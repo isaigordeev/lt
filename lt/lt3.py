@@ -22,7 +22,7 @@
 # - s состоит из английских букв, цифр, символов и пробелов
 
 
-def lengthOfLongestSubstring(s):
+def lengthOfLongestSubstring0(s):
     _curr_set = []
     _max_set_len = 0
 
@@ -41,3 +41,22 @@ def lengthOfLongestSubstring(s):
             _curr_set.append(_ch)
 
     return _max_set_len
+
+
+# vdvi
+# vdv
+
+
+def lengthOfLongestSubstring1(s):
+    _dict = dict()
+    _left = 0
+    _max = 0
+
+    for _right, _ch in enumerate(s):
+        if _ch in _dict and _dict[_ch] >= _left:  # otherwise dosvidaniya
+            _left = _dict[_ch] + 1  # cut at the found el idx + 1
+        _dict[_ch] = _right
+
+        _max = max(_max, _right - _left + 1)
+
+    return _max
