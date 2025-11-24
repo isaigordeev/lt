@@ -27,21 +27,18 @@
 
 
 def maxProfit(prices) -> int:
-    profit = 0
-
     if not prices or len(prices) < 2:
-        return profit
+        return 0
 
-    left = 0
+    min_price = prices[0]
+    max_profit = 0
 
     for i in range(1, len(prices)):
-        toss_profit = prices[i] - prices[left]
-        curr_profit = prices[i] - prices[i - 1]
+        # Calculate profit if we sell today
+        profit = prices[i] - min_price
+        max_profit = max(max_profit, profit)
 
-        profit = max(toss_profit, profit)
+        # Update minimum price if today's price is lower
+        min_price = min(min_price, prices[i])
 
-        if curr_profit > profit:
-            left = i - 1
-            profit = curr_profit
-
-    return max(profit, 0)
+    return max_profit
