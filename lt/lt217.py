@@ -21,5 +21,4 @@
 
 
 def containsDuplicate(nums):
-    # TODO: implement
-    pass
+    return len(nums) != len(set(nums))
