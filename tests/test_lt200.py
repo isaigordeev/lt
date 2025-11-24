@@ -22,6 +22,6 @@ grid = [
 uf: UnionFind = numIslands_uf(grid)
 uf.print_()
 
-print("islands: ", len(set(uf.uf)) - 1)
+print("islands uf: ", len(set(uf.uf).remove(-1)))
 
-print(numIslands_dfs(grid))
+print("islands dfs: ", numIslands_dfs(grid))
