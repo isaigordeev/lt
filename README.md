@@ -8,10 +8,10 @@ python -m tests.test_lt1
 ### Текущие
 
 **Easy (для разогрева):**
-- [ ] lt217 - Contains Duplicate (хеш-таблица)
+- [x] lt217 - Contains Duplicate (хеш-таблица)
 - [ ] lt242 - Valid Anagram (хеш-таблица)
 - [ ] lt206 - Reverse Linked List (связные списки)
-- [ ] lt121 - Best Time to Buy and Sell Stock (массивы)
+- [x] lt121 - Best Time to Buy and Sell Stock (массивы)
 
 **Medium (основные паттерны):**
 - [ ] lt53 - Maximum Subarray (динамическое программирование - Kadane's)
