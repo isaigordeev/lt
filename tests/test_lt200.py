@@ -1,4 +1,4 @@
-from lt.lt200 import UnionFind, numIslands_uf
+from lt.lt200 import UnionFind, numIslands_dfs, numIslands_uf
 
 # grid = [
 #     [1, 1, 1, 1, 0],
@@ -23,3 +23,5 @@ uf: UnionFind = numIslands_uf(grid)
 uf.print_()
 
 print("islands: ", len(set(uf.uf)) - 1)
+
+print(numIslands_dfs(grid))

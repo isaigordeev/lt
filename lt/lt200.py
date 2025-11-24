@@ -101,5 +101,40 @@ def numIslands_uf(grid):
     return _uf
 
 
-# 0 1 2 3 4
-# 5 6 7 8 9
+def erase_island(grid, i, j):
+    moves = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+
+    _list = [(i, j)]
+
+    grid[i][j] = 0  # erase start
+
+    while _list:
+        curr = _list.pop()
+        i, j = curr
+
+        for _move in moves:
+            delta_i, delta_j = _move
+
+            if 0 <= i + delta_i < len(grid) and 0 <= j + delta_j < len(
+                grid[0]
+            ):
+                if grid[i + delta_i][j + delta_j] == 1:
+                    _list.append((i + delta_i, j + delta_j))
+                    grid[i + delta_i][j + delta_j] = 0
+
+
+def numIslands_dfs(grid):
+    n = len(grid)
+    m = len(grid[0])
+
+    _isl = 0
+
+    _visited = [False for _ in range(n * m)]
+
+    for i in range(n):
+        for j in range(m):
+            if grid[i][j] == 1:
+                erase_island(grid, i, j)
+                _isl += 1
+
+    return _isl
