@@ -17,5 +17,4 @@
 
 
 def isAnagram(s, t):
-    # TODO: implement
-    pass
+    return set(s) == set(t)

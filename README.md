@@ -9,7 +9,7 @@ python -m tests.test_lt1
 
 **Easy (для разогрева):**
 - [x] lt217 - Contains Duplicate (хеш-таблица)
-- [ ] lt242 - Valid Anagram (хеш-таблица)
+- [x] lt242 - Valid Anagram (хеш-таблица)
 - [ ] lt206 - Reverse Linked List (связные списки)
 - [x] lt121 - Best Time to Buy and Sell Stock (массивы)
 

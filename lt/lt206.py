@@ -26,5 +26,20 @@ class ListNode:
 
 
 def reverseList(head):
-    # TODO: implement
-    pass
+    if not head:
+        return []
+
+    curr = head
+
+    _l = []
+
+    while curr.next:
+        _next = curr.next
+        _next.next = curr
+        curr = _next
+
+    while _next:
+        _l.append(_next.val)
+        _next = _next.next
+
+    return _l
